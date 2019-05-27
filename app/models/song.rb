@@ -32,4 +32,30 @@ class Song < ActiveRecord::Base
       nil
     end
   end
+
+  def notes_ids=(contents)
+    contents.each do |c|
+      if c.length > 0
+        note = Note.create(:content => c)
+        self.notes << note
+      end
+    end
+  end
+
+  def note_contents
+    contents = []
+    self.notes.each do |note|
+      contents << note.content
+    end
+    contents
+  end
+
+  def note_contents=(contents)
+    contents.each do |c|
+      if c.length > 0
+        note = Note.create(:content => c)
+        self.notes << note
+      end
+    end
+  end
 end
