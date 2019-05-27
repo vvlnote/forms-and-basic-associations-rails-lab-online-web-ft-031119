@@ -33,14 +33,14 @@ class Song < ActiveRecord::Base
     end
   end
 
-  def notes_ids=(contents)
-    contents.each do |c|
-      if c.length > 0
-        note = Note.create(:content => c)
-        self.notes << note
-      end
-    end
-  end
+  #def notes_ids=(contents)
+  #  contents.each do |c|
+  #    if c.length > 0
+  #      note = Note.create(:content => c)
+  #      self.notes << note
+  #    end
+  #  end
+  #end
 
   def note_contents
     contents = []
@@ -53,8 +53,7 @@ class Song < ActiveRecord::Base
   def note_contents=(contents)
     contents.each do |c|
       if c.length > 0
-        note = Note.create(:content => c)
-        self.notes << note
+        self.notes.build(:content => c)
       end
     end
   end
